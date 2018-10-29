@@ -1,0 +1,32 @@
+{
+    "name": "wor/sockets",
+    "description": "Sockets manager for for Laravel 5.5+",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew H",
+            "email": "andrew@hanichkovsky.me"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.1",
+        "illuminate/support": "5.5.*|5.6.*|5.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wor\\Sockets\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wor\\Sockets\\SocketsServiceProvider"
+            ],
+            "aliases": {
+                "Sockets": "Wor\\Sockets\\SocketsFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

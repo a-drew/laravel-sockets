@@ -1,0 +1,10 @@
+#IDE
+/.idea
+/.vscode
+*.iml
+
+# Laravel
+/vendor
+/node_modules
+.env
+.phpunit.result.cache
