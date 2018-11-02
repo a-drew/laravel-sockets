@@ -1,9 +1,10 @@
 #IDE
-/.idea
+/.idea/*
 /.vscode
 *.iml
 
 # Laravel
+composer.lock
 /vendor
 /node_modules
 .env

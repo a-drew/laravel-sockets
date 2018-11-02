@@ -10,11 +10,11 @@ to retrieve or send data via UDP/TCP Sockets .
 
 ## Quick Install
 ```
-$ composer require windofrussia/laravel-sockets:"1.0"
+$ composer require wor/sockets:"^1.0"
 ```
 OR 
 
-add `windofrussia/laravel-sockets:"1.0"` to your `require` list in the `composer.json` file.
+add `wor/sockets:"^1.0"` to your `require` list in the `composer.json` file.
 
 #### Service Provider & Facade (Optional on Laravel 5.5+)
 Register provider and facade on your config/app.php file.
