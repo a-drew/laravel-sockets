@@ -2,6 +2,7 @@
 
 namespace Wor\Sockets\Connectors;
 
+use Wor\Sockets\Exceptions\SocketUnreachableException;
 use Wor\Sockets\Requests\Request;
 
 class Socket
@@ -113,10 +114,15 @@ class Socket
      * Open a socket to the currently set remote
      *
      * @return bool successfully open
+     * @throws SocketUnreachableException
      */
     public function open(): bool
     {
-        $this->socket = stream_socket_client($this->remote,$this->error_num,$this->error_msg);
+        try {
+            $this->socket = stream_socket_client($this->remote,$this->error_num,$this->error_msg);
+        } catch (\Exception $e) {
+            throw new SocketUnreachableException($this->error_msg, $this->error_num, $e);
+        }
         return $this->isConnected();
     }
 
@@ -143,7 +149,7 @@ class Socket
      */
     public function write(string $message): bool
     {
-        if($this->debug === true) { echo 'sending message : '.$message."\n"; }
+        if($this->debug === true) { echo "\nsending message : $message \n"; }
         return fwrite($this->socket, $message, \strlen($message));
     }
 
@@ -159,7 +165,7 @@ class Socket
         if($this->debug === true) { echo "\nreceiving message : \n"; }
         stream_set_timeout($this->socket, $timeout);
         $read = stream_get_contents($this->socket, $this->length);
-        if($this->debug === true) { echo $read; }
+        if($this->debug === true) { echo $read."\n"; }
         return $read;
     }
 

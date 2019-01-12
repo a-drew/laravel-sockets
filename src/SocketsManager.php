@@ -4,7 +4,8 @@ namespace Wor\Sockets;
 
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
-use Wor\Sockets\Connectors\Socket;
+use Wor\Sockets\Connectors\Socket as ConcreteSocket;
+use Wor\Sockets\Connectors\SocketInterface as Socket;
 
 /**
  * Class SocketManager
@@ -42,12 +43,12 @@ class SocketsManager
      *
      * @param string $name name in socket configuration
      *
-     * @return Socket socket
+     * @return ConcreteSocket socket
      */
     public function makeSocket(string $name) {
         $config = $this->configuration($name);
         //TODO: replace with factory
-        return new Socket($config['host'],$config['port'],$config['protocol']);
+        return new ConcreteSocket($config['host'],$config['port'],$config['protocol']);
     }
 
     /**
