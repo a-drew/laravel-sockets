@@ -121,7 +121,7 @@ class Socket
         try {
             $this->socket = stream_socket_client($this->remote,$this->error_num,$this->error_msg);
         } catch (\Exception $e) {
-            throw new SocketUnreachableException($this->error_msg, $this->error_num, $e);
+            throw new SocketUnreachableException($this->error_msg . ' | host: ' . $this->remote, $this->error_num, $e);
         }
         return $this->isConnected();
     }
